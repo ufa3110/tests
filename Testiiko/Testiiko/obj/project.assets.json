@@ -5738,11 +5738,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\azatu\\source\\repos\\TestRSHB\\TestRSHB\\TestRSHB.csproj",
-      "projectName": "TestRSHB",
-      "projectPath": "C:\\Users\\azatu\\source\\repos\\TestRSHB\\TestRSHB\\TestRSHB.csproj",
+      "projectUniqueName": "C:\\Users\\azatu\\source\\repos\\Testiiko\\Testiiko\\Testiiko.csproj",
+      "projectName": "Testiiko",
+      "projectPath": "C:\\Users\\azatu\\source\\repos\\Testiiko\\Testiiko\\Testiiko.csproj",
       "packagesPath": "C:\\Users\\azatu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\azatu\\source\\repos\\TestRSHB\\TestRSHB\\obj\\",
+      "outputPath": "C:\\Users\\azatu\\source\\repos\\Testiiko\\Testiiko\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\azatu\\AppData\\Roaming\\NuGet\\NuGet.Config",

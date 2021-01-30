@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "10wTe7Vsu/rV5vuB7xIIdyh1g01OQhBLyvoXWgzsJ27cKq/PLlkdchv4hsP6ohcIipca5C+gkrhCR7Gk+NMnrw==",
+  "dgSpecHash": "T+Yd3ee1YE0nuq55Se8UUz/VH3uQ7iWUyqSbbKpu8rn14ZS9+MDRBJuJL0tlRhBhbdo1Bw50SLJtbwqpDIIdeQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\azatu\\source\\repos\\TestRSHB\\TestRSHB\\TestRSHB.csproj",
+  "projectFilePath": "C:\\Users\\azatu\\source\\repos\\Testiiko\\Testiiko\\Testiiko.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\azatu\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\azatu\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
