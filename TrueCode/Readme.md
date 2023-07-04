@@ -1,2 +1,3 @@
 для запуска контейнера нужно выполнить команду
-docker compose up
+
+`docker compose up`
