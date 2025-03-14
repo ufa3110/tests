@@ -1,0 +1,10 @@
+для запуска контейнера нужно выполнить команду
+<<<<<<< HEAD
+
+`docker compose up`
+=======
+docker compose up
+
+
+https://github.com/ufa3110/tests/tree/master
+>>>>>>> 81bc969 (paysolutions)
