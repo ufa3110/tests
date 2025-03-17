@@ -1,7 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using Jose;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.ComponentModel;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Reflection;
+using System.Runtime.InteropServices.Marshalling;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PaySolutionsTest.Infrastructure.SimilarRest
 {
@@ -17,8 +24,7 @@ namespace PaySolutionsTest.Infrastructure.SimilarRest
             //можно всё обернуть в try catch, половить ошибки, но в рамках этого запроса неуспешные операции приходят со статусом failed, рантаймы (или таймауты) ловить можно конечно, но немного утяжелит код сейчас.
             var signDate = DateTime.UtcNow.ToString("o");
 
-            HttpClient client = new HttpClient();
-            //в описании тестового не написан протокол у хоста - убил часа 1.5 на то что на http 405 прилетало.
+            HttpClient client = new();
             var builder = new UriBuilder()
             {
                 Host = host,
@@ -26,22 +32,21 @@ namespace PaySolutionsTest.Infrastructure.SimilarRest
             };
             client.BaseAddress = builder.Uri;
             var request = new HttpRequestMessage(method, route);
-            
 
-            var encodedPayload = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(payload)));
+            var protectedHeaders = new Dictionary<string, object>()
+            {
+                { "kid" , keyId },
+                { "signdate" , signDate },
+                { "cty" , "application/json" }
+            };
 
-            var protectedHeader = new { alg = "HS256", kid = keyId, signdate = signDate, cty = "application/json" };
-            var encodedProtectedHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(protectedHeader)));
-            var content = $"{encodedProtectedHeader}.{encodedPayload}."+
-                $"{Convert.ToBase64String(HMACSHA256.HashData(Encoding.UTF8.GetBytes(key),
-                Encoding.UTF8.GetBytes($"{encodedProtectedHeader}.{encodedPayload}")))}";
+            string token1 = Jose.JWT.Encode(payload, Convert.FromBase64String(key), JwsAlgorithm.HS256, protectedHeaders);
 
-            request.Content = new StringContent(JsonConvert.SerializeObject(payload));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", content);
+            request.Content = new StringContent(token1);
+            var response = await client.SendAsync(request, ct);
+            var rawResponse = (await response.Content.ReadAsStringAsync(ct)).Split('.').Skip(1).First();
 
-            //увидел jose библиотеку, но уже после того как всё написал, решил оставить так.
-            var result = await client.SendAsync(request, ct);
-            return await result.Content.ReadAsStringAsync(ct);
+            return Base64UrlEncoder.Decode(rawResponse);
         }
     }
 }

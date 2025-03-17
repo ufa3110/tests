@@ -52,6 +52,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.6.0, )"
+            },
+            "jose-jwt": {
+              "target": "Package",
+              "version": "[5.1.1, )"
             }
           },
           "imports": [

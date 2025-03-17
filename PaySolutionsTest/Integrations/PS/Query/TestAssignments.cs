@@ -17,8 +17,8 @@ namespace PaySolutionsTest.Integrations.PS.Querys
                             }
             };
 
-            var response = await SimilarRestHelper.SendQueryAsync(request, HttpMethod.Post, "testassignments/pan",  ct);
-            //ну тут nre может быть, в идеале бы предусмотреть. (например при 404 как сейчас)
+            var response = await SimilarRestHelper.SendQueryAsync(request.GetAsDictionary(), HttpMethod.Post, "api/testassignments/pan",  ct);
+            //ну тут nre может быть, в идеале бы предусмотреть.
             try
             {
                 return JsonConvert.DeserializeObject<TestAssignmentsResponse>(response);

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PaySolutionsTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a9f386b44a71b3d51cbaacdbe4f4817b674b6b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b55e42ccbc2c24eb197bf04d125b76a5712d9b34")]
 [assembly: System.Reflection.AssemblyProductAttribute("PaySolutionsTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PaySolutionsTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
