@@ -1,0 +1,30 @@
+﻿version: "3.8"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: crudl_db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: crudl_api
+    environment:
+      - DATABASE_URL=postgres://app:app@db:5432/app?sslmode=disable
+      - ADDR=:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+volumes:
+  db_data:

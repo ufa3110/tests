@@ -1,0 +1,26 @@
+# Multi-stage build for Go API
+FROM golang:1.24-alpine AS builder
+WORKDIR /app
+
+# Install build deps
+RUN apk add --no-cache git ca-certificates
+
+# Cache modules
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy source
+COPY . .
+
+# Build
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /bin/app ./cmd/service
+
+FROM gcr.io/distroless/base-debian12
+WORKDIR /
+COPY --from=builder /bin/app /app
+ENV ADDR=:8080
+EXPOSE 8080
+USER nonroot:nonroot
+ENTRYPOINT ["/app"]
+
+
