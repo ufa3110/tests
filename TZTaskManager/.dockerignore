@@ -1,0 +1,15 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+node_modules/
+.env
+.env.local
+
